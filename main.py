@@ -1,5 +1,6 @@
 from os import listdir
 from Docs import Docs
+from Utils import printDict
 
 from TF_IDF import TF_IDF
 
@@ -17,8 +18,6 @@ for docs in listdir(docs_path)[0:3]:
     ir.appendDocs(content)
     # print(content)
 
-print(ir.tf())
-print()
-print()
-print()
-print(ir.idf())
+printDict(ir.tf())
+print('\n=\n', end='')
+printDict(ir.idf())
