@@ -1,4 +1,3 @@
-from turtle import clear
 from Docs import  Docs
 from math import log10
 
