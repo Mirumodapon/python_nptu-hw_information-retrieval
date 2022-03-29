@@ -7,6 +7,8 @@ class TF_IDF:
         self.__docsName = list()
         self.__size = 0
         self.__tf = dict()
+        self.__documentTermWeight = None
+        self.__queryTermWeight = None
         pass
     def appendDocs(self, docs):
         if (type(docs) != Docs): raise 'Type Error.'
@@ -18,6 +20,14 @@ class TF_IDF:
         for word in docs.getContent():
             if (word not in self.__tf): self.__tf[word] = [0]*self.__size
             self.__tf[word][-1] = sum([1 for term in self.__docs[-1] if term == word])
+
+    def documentTermWeight(self, termWeight):
+        idf = self.idf()
+        tf = self.tf()
+        for word in tf:
+            for i in range(len(tf[word])):
+                tf[word][i] = termWeight(tf[word][i], idf[word])
+        return tf
 
     def query(self, query):
         if (type(query) == list): return self.__queryMultipleWords(query)
