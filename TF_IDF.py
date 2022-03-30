@@ -7,9 +7,6 @@ class TF_IDF:
         self.__docsName = list()
         self.__size = 0
         self.__tf = dict()
-        self.__documentTermWeight = None
-        self.__queryTermWeight = None
-        pass
     def appendDocs(self, docs):
         if (type(docs) != Docs): raise 'Type Error.'
         self.__docs.append(docs.getContent())
