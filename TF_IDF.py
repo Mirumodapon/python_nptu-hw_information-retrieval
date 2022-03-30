@@ -1,4 +1,5 @@
 from TF_IDF_BASE import TF_IDF_BASE
+from math import log10
 
 class TF_IDF(TF_IDF_BASE):
     def __init__(self, Schema):
