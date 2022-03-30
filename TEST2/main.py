@@ -1,6 +1,6 @@
 from os import listdir
 from Utils import printDict
-from Schema2 import Schema
+from Schema1 import Schema
 
 docs_path = './Document'
 query_path = './Query'

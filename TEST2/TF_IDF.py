@@ -1,4 +1,4 @@
-from math import log10
+from math import log10, sqrt
 from Docs import Docs
 
 class TF_IDF:
@@ -43,4 +43,6 @@ class TF_IDF:
         for word in words:            
             for n in range(self.__size):
                 innerProduct[n] += dtw[word][n] * qtw[word]
+
         return innerProduct
+
