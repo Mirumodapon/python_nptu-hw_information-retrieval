@@ -14,9 +14,11 @@ class TF_IDF:
     def __tf(self, word):
         return [doc.count(word) for doc in self.__docs] 
     def __idf(self, word):
-        return log10(self.__size / sum([1 for doc in self.__docs if doc.isInclude(word)]))
+        df = sum([1 for doc in self.__docs if doc.isInclude(word)])
+        return log10(self.__size / df) if df != 0 else 0
     def __maxi(self, word):
-        return max([1 for doc in self.__docs if doc.isInclude(word)])
+        temp = [1 for doc in self.__docs if doc.isInclude(word)]
+        return 0.01 if len(temp) == 0 else max(temp)
 
     def __documentTermWeight(self, tf, idf):
         pass
