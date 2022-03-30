@@ -14,7 +14,8 @@ class Docs:
     def parser(*documents, ignore=[]):
         temp = []
         for document in documents:
-            for word in split('\n|\ ', document):
+            for word in split('\n', document):
+                word = word.replace('-1', '')
                 if (not word in ignore):
                     temp.append(word)
         return temp
