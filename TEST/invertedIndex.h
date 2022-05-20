@@ -5,6 +5,7 @@
     #include <map>
     #include <vector>
     #include <string>
+    #include <algorithm>
 
     #include "Movie.h"
     #include "utils.h"
@@ -19,6 +20,7 @@
     public:
         InvertedIndex() {
             inverted = new Inverted();
+            ignore = "\".()[]{}\\/!@#$%^,&*()_+';:?<>=-~!()-[]{};:,`「」שℵℙ∇—©∆¬Ω√Ø√ß®Å™§•∫∏†≈º¶，ǀǃ∞−【】♥～❤─・…（）‘’�|→–……《》･=“”·+。«»“”！″”„†—•’”<>./?@#$%^&*_~`,";
         }
 
         void insertMovie (Movie* movie) {
@@ -29,14 +31,15 @@
 
             std::string term = "";
             for (char c : buff) {
-                if (c == ' ') {
+                if (c == ' ' || ignore.find(c) != std::string::npos) {
                     this -> termAttach(term, movie);
-                    std::cout<< term << std::endl;
                     term = "";
                     continue;
                 }
                 term += c;
             }
+
+            if (term != "") this -> termAttach(term, movie);
         }
 
         void insertMovies (std::vector<Movie*> movies) {
@@ -46,20 +49,38 @@
         }
 
         void getTermInvertedIndex (std::string term) {
-            std::cout << (*inverted)[term] << std::endl;
+
+            std::cout << "======" << std::endl;
+            std::cout << "Term: " << term << std::endl;
+
+            MovieList* movies = (*inverted)[term];
+
+            int size = movies -> size();
+            for (int i = 0 ; i < size ; ++i) {
+                Movie* movie = (*movies)[i];
+                std::cout << movie -> getName() << std::endl;
+                // std::cout << movie -> getDescription() << std::endl;
+            }
+
+            std::cout<< "=====" << std::endl;
         }
 
     private:
         Inverted* inverted;
+        std::string ignore;
 
         void termAttach (std::string term, Movie* movie) {
+            if (term == "") return;
             if (inverted -> find(term) == inverted -> end()) {
                 // not exists
                 inverted -> insert(std::pair<std::string, MovieList*>(term, new MovieList()));
             }
             // insert the movie in to map elements
+            MovieList* movies = (*inverted)[term];
+            if (std::find(movies -> begin(), movies -> end(), movie) == movies -> end())
+                movies -> push_back(movie);
 
-            (*inverted)[term] -> push_back(movie);
+            std::cout << term << std::endl;
         }
     };
 

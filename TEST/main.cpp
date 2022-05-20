@@ -9,15 +9,14 @@ using namespace std;
 #include "Movie.h"
 
 int main () {
-    vector<Movie*>* movies = readFile("./Docs/example.txt");
+    vector<Movie*>* movies = readFile("./Docs/movies.txt");
     InvertedIndex invertedIndex;
 
+    cout << "Hello 2" << endl; // ! temp
     invertedIndex.insertMovies(*movies);
-    invertedIndex.getTermInvertedIndex("doc");
-    invertedIndex.getTermInvertedIndex("a");
+    cout << "Hello 3" << endl; // ! temp
     invertedIndex.getTermInvertedIndex("movie");
-    invertedIndex.getTermInvertedIndex("gd");
-
+    cout << "Hello 4" << endl; // ! temp
 
 
 

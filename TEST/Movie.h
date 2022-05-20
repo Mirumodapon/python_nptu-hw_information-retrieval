@@ -2,6 +2,7 @@
 #define _MOVIE_
 
     #include <string>
+    #include "Exception.h"
 
 class Movie {
 private:
@@ -15,6 +16,7 @@ public:
     }
     Movie (std::string movie) {
         int index = movie.find('\t');
+        if (index == std::string::npos) throw Exception("Movie format is not current.\n");
         name = movie.substr(0, index);
         description = movie.substr(index + 1, movie.length() - index);
     }
