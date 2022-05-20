@@ -1,12 +1,12 @@
-import pandas as pd
-import math
-import operator
+# import pandas as pd
+# import math
+# import operator
 import time
 import datetime
-import sys
+# import sys
 def ReadDoc():
     
-    f1=open('.\\movies.txt' , encoding='utf8')
+    f1=open('./movies.txt' , encoding='utf8')
     file=f1.readlines()
     f1.close()
     n=0
