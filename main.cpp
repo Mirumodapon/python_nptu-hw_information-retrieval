@@ -10,7 +10,14 @@ using namespace std;
 
 int main () {
     vector<Movie*>* movies = readFile("./Docs/example.txt");
-    Inverted* inverted = generateInvertedIndex(*movies);
+    InvertedIndex invertedIndex;
+
+    invertedIndex.insertMovies(*movies);
+    invertedIndex.getTermInvertedIndex("doc");
+    invertedIndex.getTermInvertedIndex("a");
+    invertedIndex.getTermInvertedIndex("movie");
+    invertedIndex.getTermInvertedIndex("gd");
+
 
 
 
