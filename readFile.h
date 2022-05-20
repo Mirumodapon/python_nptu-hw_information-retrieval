@@ -5,27 +5,26 @@
     #include <string>
     #include "Movie.h"
 
-    #include <iostream>
+    #include <iostream> // ! temp
     #include <vector>
 
-    void readFile (std::string path) {
+    std::vector<Movie*>* readFile (std::string path) {
 
         std::fstream file;
         file.open(path, std::ios::in);
 
         if (!file) throw "Can not open the file.\n";
 
+        std::vector<Movie*>* movies = new std::vector<Movie*>();
         while (!file.eof()) {
             std::string movie_str;
             getline(file, movie_str);
 
             Movie* movie = new Movie(movie_str);
-
-            std::cout<< movie -> getName() << std::endl;
-            std::cout<< movie -> getDescription() << std::endl;
+            movies -> push_back(movie);
         }
 
-        return;
+        return movies;
     }
 
 

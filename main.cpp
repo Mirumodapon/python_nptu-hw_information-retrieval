@@ -1,14 +1,18 @@
 #include "readFile.h"
+#include "invertedIndex.h"
 
 #include <iostream>
-#include <fstream>
+#include <vector>
+
+using namespace std;
+
+#include "Movie.h"
 
 int main () {
-    readFile("./Docs/example.txt");
+    vector<Movie*>* movies = readFile("./Docs/example.txt");
+    Inverted* inverted = generateInvertedIndex(*movies);
 
 
-
-     
 
     return 0;
 }
