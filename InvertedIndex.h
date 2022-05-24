@@ -14,12 +14,10 @@
 
 class InvertedIndex {
 private:
-    MoviesSet* movies;
     TermMap* invertedList;
 
 public:
     InvertedIndex() {
-        this->movies = new MoviesSet();
         this->invertedList = new TermMap();
     }
     void readFile(std::string path) {
@@ -35,10 +33,11 @@ public:
 
             StringArray temp = split(line, "\t");
             Movie* movie = new Movie(temp[0], temp[1]);
-            movies->push(movie);
+
+            std::cout << movie;
         }
     }
-    void inverted();
+
     MoviesSet* query(std::string term);
 };
 
