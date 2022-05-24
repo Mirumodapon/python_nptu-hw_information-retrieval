@@ -8,6 +8,7 @@
 #include "MoviesSet.h"
 #include "TermMap.h"
 #include "Exception.h"
+#include "StringSplit.h"
 
 #include <iostream> // ! temp
 
@@ -32,10 +33,8 @@ public:
             getline(file, line);
             if (line == "") continue;
 
-            // split line and assign to name description
-
-            Movie* movie = new Movie("", line);
-            std::cout << movie;
+            StringArray temp = split(line, "\t");
+            Movie* movie = new Movie(temp[0], temp[1]);
             movies->push(movie);
         }
     }
